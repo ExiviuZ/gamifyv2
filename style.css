@@ -1,0 +1,259 @@
+*,*::before,*::after {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    margin: 0;
+    font-size: 1rem;
+    background: rgba(0,0,0,0.7) url('images/bg.jpg');
+    background-size: cover;
+    background-blend-mode: darken;
+    background-position: center;
+    color: white;
+}
+
+.wrapper {
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr auto;
+    grid-template-areas: 
+    'header header header'
+    'banner something something'
+    'banner something something'
+    'footer footer footer'
+    ;
+    }
+
+.header{
+    background-color: black;
+    padding: 0.5em;
+    grid-area: header;
+}
+
+nav, .footer-wrapper {
+    display: flex;
+    width: 90%;
+    margin-inline: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+.brand {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+}
+
+.links {
+    position: relative;
+    list-style-type: none;
+    padding: 0;
+    width: 60%;
+    margin: 0;
+    display: flex;
+    padding: 0.5em;
+    color: white;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid  lavender;
+}
+
+.burger, .closer {
+    cursor: pointer;
+    display: none;
+}
+
+.burger > div, .closer > div {
+    margin-block:4px;
+    width: 20px; 
+    height: 2px;
+    background-color: white;
+}
+
+.link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.link:hover::after {
+    opacity: 1;
+    }
+
+.link::after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 0.25s linear;
+}
+
+.socials {
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    width: 30%;
+    list-style: none;
+}
+
+.socials::before {
+    display: block;
+}
+
+.socials img {
+    width: 30px;
+    transition: transform 0.25s ease-out;
+}
+
+.socials img:active {
+    transform: scale(0.7);
+}
+
+.banner {
+    text-align: center;
+    width: 100%;
+    background-color: rgba(51, 51, 51, 0.5);
+    padding: 1em;
+    backdrop-filter: blur(5px);
+    grid-area: banner;
+    vertical-align:middle;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.banner h1::before {
+    content: url('images/9.svg');
+    display: block;
+}
+
+.feature {
+    padding: 0.5em;
+    grid-area: something;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(0, 0, 0, 0.507);
+    backdrop-filter: blur(5px);
+}
+
+.product {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 50%;
+    text-align: center;
+    text-align: center;
+}
+
+.product img {
+    width: 70%;
+}
+
+.product-content {
+    padding: 0.5em;
+}
+
+.product-content small {
+    text-decoration: underline;
+}
+
+.footer {
+    grid-area: footer;
+
+    background-color: black;
+
+    padding-block: 1rem;
+}
+
+
+/* Mobile View */
+
+@media (max-width:650px) {
+    body{
+        overflow-x: hidden;
+    }
+
+    .wrapper {
+        grid-template-areas: 
+        'header'
+        'banner'
+        'something'
+        'footer'
+        ;
+        grid-template-rows: auto auto auto auto;
+        grid-template-columns: 1fr;
+    }
+    .links{
+        position: fixed;
+        flex-direction: column;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        height: 100%;
+        z-index: 99;
+        background-color: black;
+        border: none;
+        width: 60%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-out,
+                    opacity 0.5s ease-out;
+    }
+    .banner {
+    padding: 1rem;
+    margin: auto;
+
+    }
+    .burger {
+    display: block;
+    transition: opacity 0.25s linear;
+}
+
+.header, .footer {
+    display: flex;
+}
+.closer div:nth-child(1){
+    transform: translateY(6px) rotate(45deg);
+}
+.closer div:nth-child(2){
+    opacity: 0;
+}
+.closer div:nth-child(3){
+    transform: translateY(-6px) rotate(-45deg);
+}
+.closer {
+    display: block;
+    position: absolute;
+    top: 5%;
+    right: 10%;
+}
+
+.toggle-menu {
+    transform: translateX(0);
+    opacity: 1;
+}
+.fade-out-in {
+    opacity: 0;
+}
+.socials {
+    width: 70%;
+}
+
+.feature {
+    gap: 2rem;
+}
+.feature figure {
+    flex-direction: column;    
+    width: 100%;
+}
+
+.feature img {
+    width: min(70% ,70%);
+}
+
+}
